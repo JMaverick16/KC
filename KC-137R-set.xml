@@ -22,7 +22,7 @@
 	<menubar>
 		<default>
 			<menu n="100">
-				<label>Boeing 707 TT</label>
+				<label>Boeing KC-137R</label>
 				<enabled type="bool">true</enabled>
 				<item>
 					<label>Autostart / shutdown</label>
@@ -110,7 +110,7 @@
 	</menubar>
 
 	<help>
-	  <title>Boeing 707 TT</title>
+	  <title>Boeing KC-137R</title>
 		<key>
 		  <name>L</name>
 		  <desc>toggle Landing Lights</desc>

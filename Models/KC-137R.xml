@@ -2391,7 +2391,7 @@
  <!--Conway RCo.10 engines -->
 	<model>
 		<name>engineOne</name>
-		<path>Aircraft/KC-137R/Models/RCo10_1.xml</path>
+		<path>Aircraft/KC-137R/Models/Engines/LeapX.xml</path>
 		<offsets>
 		  <x-m>  2.42</x-m>
 		  <y-m>-14.835</y-m>
@@ -2401,11 +2401,14 @@
 	
 	<model>
 		<name>engineTwo</name>
-		<path>Aircraft/KC-137R/Models/RCo10_2.xml</path>
+		<path>Aircraft/KC-137R/Models/Engines/LeapX.xml</path>
 		<offsets>
-		  <x-m> -1.25</x-m>
+            <!--x-m> -1.25</x-m>
 		  <y-m>-10.077</y-m>
-		  <z-m> -1.10</z-m>
+		  <z-m> -1.10</z-m-->    
+		  <x-m> -3.50</x-m>
+		  <y-m>-10.077</y-m>
+		  <z-m> -1.43</z-m>
 		</offsets>
 	</model>
 	
@@ -2452,9 +2455,9 @@
  <!--Pratt and Whitney JT4 engines -->
 	<model>
 		<name>engineOnePW</name>
-		<path>Aircraft/KC-137R/Models/PWJT4_1.xml</path>
+		<path>Aircraft/KC-137R/Models/Engines/LeapX.xml</path>
 		<offsets>
-		  <x-m>  2.47</x-m>
+		  <x-m>  0.22</x-m>
 		  <y-m>-14.835</y-m>
 		  <z-m> -0.73</z-m>
 		</offsets>
@@ -2462,29 +2465,29 @@
 	
 	<model>
 		<name>engineTwoPW</name>
-		<path>Aircraft/KC-137R/Models/PWJT4_2.xml</path>
+		<path>Aircraft/KC-137R/Models/Engines/LeapX_2.xml</path>
 		<offsets>
-		  <x-m> -1.18</x-m>
+		  <x-m> -3.50</x-m>
 		  <y-m>-10.077</y-m>
-		  <z-m> -1.18</z-m>
+		  <z-m> -1.43</z-m>
 		</offsets>
 	</model>
 	
 	<model>
 		<name>engineThreePW</name>
-		<path>Aircraft/KC-137R/Models/PWJT4_3.xml</path>
+		<path>Aircraft/KC-137R/Models/Engines/LeapX_3.xml</path>
 		<offsets>
-		  <x-m> -1.18</x-m>
+		  <x-m> -3.50</x-m>
 		  <y-m> 10.077</y-m>
-		  <z-m> -1.18</z-m>
+		  <z-m> -1.43</z-m>
 		</offsets>
 	</model>
 	
 	<model>
 		<name>engineFourPW</name>
-		<path>Aircraft/KC-137R/Models/PWJT4_4.xml</path>
+		<path>Aircraft/KC-137R/Models/Engines/LeapX_4.xml</path>
 		<offsets>
-		  <x-m>  2.47</x-m>
+		  <x-m>  0.22</x-m>
 		  <y-m> 14.835</y-m>
 		  <z-m> -0.73</z-m>
 		</offsets>
