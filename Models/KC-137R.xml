@@ -176,6 +176,8 @@
     <texture>KC-137R.png</texture>
   </animation>
 
+    
+    
 	<animation>
 		<type>noshadow</type>
     <object-name>fuselage.inner</object-name>

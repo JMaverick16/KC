@@ -11,11 +11,11 @@
 	</offsets -->
 
 	<!-- Reflection Shader -->
-	<effect>
+	<!--effect>
 		<inherits-from>Aircraft/KC-137R/Models/Effects/NEOreflect</inherits-from>
 		<object-name>Reverser</object-name>
 		<object-name>Nacelle</object-name>
-	</effect>
+	</effect-->
     
     <animation>
     <type>scale</type>
