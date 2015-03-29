@@ -7,7 +7,7 @@
 -->
 <PropertyList include="707-common.xml">
  <sim n="0">
-  <description>Boeing KC-137R</description>
+  <description>Boeing KE-3A</description>
 	<startup>
 		<splash-texture>Aircraft/KC-137R/splashTT.png</splash-texture>
 	</startup>
@@ -22,7 +22,7 @@
 	<menubar>
 		<default>
 			<menu n="100">
-				<label>Boeing KC-137R</label>
+				<label>Boeing KE-3A</label>
 				<enabled type="bool">true</enabled>
 				<item>
 					<label>Autostart / shutdown</label>
@@ -110,7 +110,7 @@
 	</menubar>
 
 	<help>
-	  <title>Boeing KC-137R</title>
+	  <title>Boeing KE-3A</title>
 		<key>
 		  <name>L</name>
 		  <desc>toggle Landing Lights</desc>
