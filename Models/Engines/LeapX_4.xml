@@ -72,9 +72,9 @@
 		</effect>
 	</model>
 
-	<model>
-		<path>Aircraft/KC-137R/Models/Engines/res/a320.pylon.cfmleapx.left.ac</path>
-	</model>
+	<!--model>
+		<path>Aircraft/KC-137R/Models/Engines/res/a320.pylon.cfmleapx.right.ac</path>
+	</model-->
 
 	<model>
 		<name>Contrail</name>
