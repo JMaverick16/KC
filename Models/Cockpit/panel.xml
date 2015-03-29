@@ -20,12 +20,12 @@
 <model>
   <name>refuel_Lamp</name>
   <path>Aircraft/KC-137R/Models/Cockpit/Instruments/lamps/refuel_lamp_pilot.xml</path>
-  <condition>		
+  <!--condition>		
 	<equals>
 		<property>sim/aircraft</property>
 		<value type="string">KC-137R</value>
       </equals>
-  </condition>
+  </condition-->
   <offsets>
     <x-m>-18.916</x-m>
     <y-m>-0.612</y-m>

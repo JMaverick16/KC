@@ -98,7 +98,7 @@ Doors.refuelexport = func {
 	var rh = getprop("/instrumentation/doors/refuel-boom/position-norm") or 0;
 	if(rh){
 		setprop("/b707/refuelling/boom-telescope-lever",0);
-   	interpolate("/b707/refuelling/boom-telescope-lever", -17.0, 0.5);
+   	    interpolate("/b707/refuelling/boom-telescope-lever", -17.0, 0.5);
   }else{
 		setprop("/b707/refuelling/boom-telescope-lever",0);
    	interpolate("/b707/refuelling/boom-telescope-lever",  17.0, 0.5);

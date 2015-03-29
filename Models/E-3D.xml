@@ -8,13 +8,11 @@
 
 <PropertyList>
 
- <path>KC-137R.ac</path>
+ <path>EC-137.ac</path>
 
 <animation>
 	<type>select</type>		
-    <!--<object-name>fuselage</object-name> - in operator room we need the fuselage -->
-    <object-name>fuselage.inner</object-name>
-    <object-name>fuselage.belly</object-name>
+    <object-name>fuselage</object-name>
     <object-name>doorFL</object-name>
     <object-name>doorRL</object-name>
     <object-name>doorCargo</object-name>
@@ -68,6 +66,8 @@
 	<object-name>lhibail</object-name>
 	<object-name>rhobail</object-name>
 	<object-name>lhobail</object-name>
+    <object-name>slatsR</object-name>
+    <object-name>slatsL</object-name>
 	<object-name>RightGear</object-name>
 	<object-name>RightGear.001</object-name>
 	<object-name>RightGearBase</object-name>
@@ -79,22 +79,21 @@
 	<object-name>LeftGearCompressor</object-name>
 	<object-name>LeftGearCompressor1</object-name>
 	<condition>
-    	<not><property>sim/current-view/internal</property></not>
+		<or>
+	    	<not><property>sim/current-view/internal</property></not>				
+			<equals>
+				<property>sim/current-view/view-number</property>
+				<value>12</value>
+			</equals>
+		</or>
 	</condition>
-</animation>
+</animation> 
  
   <sound><path>Aircraft/KC-137R/Sounds/mp-sound.xml</path></sound>
   
-	<multiplay>
-		<refuel>
-		 	<type>probe</type>
-		 	<type>boom</type>
-		</refuel>
-	</multiplay>
-  
   <nasal>
     <load>
-      var livery_update = aircraft.livery_update.new("Aircraft/KC-137R/Models/LiveriesTT", 10);
+      var livery_update = aircraft.livery_update.new("Aircraft/KC-137R/Models/LiveriesEC", 10);
     </load>
 
     <unload>
@@ -112,6 +111,7 @@
     <object-name>doorCargo</object-name>
     <object-name>doorBelly</object-name>
     <object-name>nose</object-name>
+    <object-name>fuselage</object-name>
     <object-name>vertstab</object-name>
     <object-name>rudder</object-name>
     <object-name>nonones</object-name>
@@ -151,8 +151,6 @@
 	<object-name>lhibflap</object-name>
 	<object-name>rhobflap</object-name>
 	<object-name>lhobflap</object-name>
-	<object-name>rhobail</object-name>
-	<object-name>lhobail</object-name>
 	<object-name>rhsp1</object-name>
 	<object-name>lhsp1</object-name>
 	<object-name>rhsp3</object-name>
@@ -161,30 +159,70 @@
 	<object-name>lhibail</object-name>
 	<object-name>rhobail</object-name>
 	<object-name>lhobail</object-name>
-	<object-name>refuelAPURight</object-name>
-	<object-name>refuelAPULeft</object-name>
-	<object-name>refuelProbeRight</object-name>
-	<object-name>refuelProbeLeft</object-name>
-	<object-name>refuelPivot</object-name>
-	<object-name>refuelTube</object-name>
-	<object-name>refuelOperator</object-name>
-	<object-name>operatorRoom</object-name>
-	<object-name>operatorRoomWin</object-name>
-	<object-name>operatorPlace</object-name>
+	<object-name>doorRefuel</object-name>
+	<object-name>Radome</object-name>
+	<object-name>RadomeSup</object-name>
     <property-base>sim/model/livery</property-base>
     <texture-prop>texture</texture-prop>
-    <texture>KC-137R.png</texture>
+    <texture>USAF.png</texture>
   </animation>
 
-    
-    
 	<animation>
 		<type>noshadow</type>
     <object-name>fuselage.inner</object-name>
     <object-name>fuselage.belly</object-name>
-    <object-name>cockpit</object-name>
-    <object-name>operatorRoom</object-name>     
+    <object-name>cockpit</object-name>    
 	</animation>
+
+  <animation>
+      <type>translate</type>
+      <object-name>doorRefuel</object-name>
+      <property>sim/multiplay/generic/float[18]</property>
+			<factor>1</factor>
+      <axis>
+          <x> 1.0</x>
+          <y> 0.0</y>
+          <z> 0.0</z>
+      </axis>
+  </animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Radome</object-name>
+		<condition>
+			<property>sim/multiplay/generic/int[13]</property>
+		</condition>
+		<property>/sim/time/elapsed-sec</property>
+		<factor>20</factor>
+		<center>
+			<x-m>10.022</x-m>
+			<y-m>0.05</y-m>
+			<z-m>6.256</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>Radome</object-name>
+		<condition>
+			<not>
+      	<equals>
+      		<property>sim/current-view/view-number</property>
+      		<value>12</value>
+      	</equals>
+      </not>
+		</condition>
+	</animation>
+	
+	<model>
+		<name>radioRoom</name>
+		<path>Aircraft/KC-137R/Models/Cockpit/Awacs/radioroom.xml</path>
+	</model>
 	
 		
 	<!-- inside fuselage -->
@@ -204,6 +242,7 @@
 		<type>select</type>
 		<object-name>fuselage.inner</object-name>
 		<object-name>fuselage.belly</object-name>
+		<object-name>radioRoom</object-name>
 		<condition>
 		  <or>
       	<property>sim/multiplay/generic/float[6]</property>
@@ -211,112 +250,11 @@
       	<property>sim/multiplay/generic/float[15]</property>
       	<property>sim/multiplay/generic/float[16]</property>
       	<property>sim/multiplay/generic/int[19]</property>
+      	<equals>
+      		<property>sim/current-view/view-number</property>
+      		<value>12</value>
+      	</equals>
       </or>
-		</condition>
-	</animation>
-
-	<!-- see operators Room only on view number 12 -->
-	<model>
-		<name>operationLight1</name>
-		<path>Aircraft/KC-137R/Models/Lights/lightcone-small-oo.xml</path>
-		<offsets>   
-		  <x-m>12.65</x-m>
-		  <y-m>-0.24</y-m>
-		  <z-m>-0.65</z-m>
-		  <pitch-deg>-5.0</pitch-deg>
-		  <roll-deg> 0.0</roll-deg>
-		</offsets>
-	</model>
-	
-	<model>
-		<name>operationLight2</name>
-		<path>Aircraft/KC-137R/Models/Lights/lightcone-small-oo.xml</path>
-		<offsets>   
-		  <x-m>12.65</x-m>
-		  <y-m> 0.24</y-m>
-		  <z-m>-0.65</z-m>
-		  <pitch-deg>-5.0</pitch-deg>
-		  <roll-deg> 0.0</roll-deg>
-		</offsets>
-	</model>
-	
-	<model>
-		<name>operationLight3</name>
-		<path>Aircraft/KC-137R/Models/Lights/lightcone-small-oo.xml</path>
-		<offsets>   
-		  <x-m>11.0</x-m>
-		  <y-m> 0.0</y-m>
-		  <z-m>-0.96</z-m>
-		  <pitch-deg>-95.0</pitch-deg>
-		  <roll-deg> 0.0</roll-deg>
-		</offsets>
-	</model>
-		
-	<model>
-	 <name>operationPanel</name>
-	 <path>Aircraft/KC-137R/Models/Cockpit/Equipment/tt_panel/tt_panel.xml</path>
-		<offsets>
-      <x-m>12.75</x-m>
-      <y-m>0</y-m>
-      <z-m>-1.23</z-m>
-      <heading-deg>180</heading-deg>
-    	<pitch-deg>-70</pitch-deg>
-		</offsets>
-	</model>
-
-	<model>
-	 <name>operationRadar</name>
-	 <path>Aircraft/KC-137R/Models/Cockpit/Instruments/radar/radar.xml</path>
-		<offsets>
-      <x-m>12.8</x-m>
-      <y-m>0</y-m>
-      <z-m>-0.9</z-m>
-      <heading-deg>180</heading-deg>
-    	<pitch-deg>-30</pitch-deg>
-    	<roll-deg>180</roll-deg>
-		</offsets>
-	</model>
-	
-	<animation>
-		<type>material</type>
-		<object-name>operatorRoom</object-name>
-		<condition>	
-			<not><property>/sim/rendering/rembrandt/enabled</property></not>
-		</condition>
-		<emission>
-		  <red>0.4</red>
-		  <green>0.4</green>
-		  <blue>0.4</blue>
-		  <factor-prop>/systems/electrical/outputs/cabin-dim</factor-prop>
-		</emission>
-	</animation>
-
-	<animation>
-		<type>material</type>
-		<object-name>operatorRoomWin</object-name>
-		<condition>	
-			<not><property>/sim/rendering/rembrandt/enabled</property></not>
-		</condition>
-		<emission>
-		  <red>0.1</red>
-		  <green>0.1</green>
-		  <blue>0.1</blue>
-		  <factor-prop>/systems/electrical/outputs/cabin-dim</factor-prop>
-		</emission>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>operatorRoom</object-name>
-		<object-name>operationPanel</object-name>
-		<object-name>operationLight1</object-name>
-		<object-name>operationLight2</object-name>
-		<object-name>operationLight3</object-name>
-		<condition>
-			<equals>
-		    <property>sim/current-view/view-number</property>
-		    <value>12</value>
-		  </equals>
 		</condition>
 	</animation>
 
@@ -363,8 +301,8 @@
     		<property>b707/external-power-connected</property>
 		  </binding>
 		</action>
-  </animation>
-
+  </animation> 
+   
   <!-- Fuel Truck -->
   <model>
   	<name>FuelTruck</name>
@@ -375,7 +313,7 @@
 	  <z-m>0.0</z-m>
 	</offsets>
   </model>
-
+  
 <animation>
 	<type>select</type>
 	<object-name>FuelTruck</object-name>
@@ -692,11 +630,11 @@
 	<animation>
 		<type>select</type>
 		<object-name>rhfiletflap</object-name>
-  	<object-name>rhibflap</object-name>
-  	<object-name>lhobflap</object-name>
-  	<object-name>nose</object-name>
-  	<object-name>doorFL</object-name>
-  	<object-name>doorRL</object-name>
+	  	<object-name>rhibflap</object-name>
+	  	<object-name>lhobflap</object-name>
+	  	<object-name>nose</object-name>
+	  	<object-name>doorFL</object-name>
+	  	<object-name>doorRL</object-name>
 		<condition>
 			<not><property>sim/multiplay/generic/int[19]</property></not>
 		</condition>	
@@ -717,127 +655,7 @@
 				<not><property>/sim/rendering/rembrandt/enabled</property></not>
 			</and>
 		</condition>
-	</animation>
-	
-  <!-- Air-to-Air Refuelsystem -->
-	<animation>
-		<type>select</type>
-		<object-name>refuelProbeRight</object-name>
-		<condition>
-		  <property>sim/multiplay/generic/int[10]</property>
-		</condition>
-	</animation>
-	
-	<animation>
-		<type>select</type>
-		<object-name>refuelProbeLeft</object-name>
-		<condition>
-		  <property>sim/multiplay/generic/int[11]</property>
-		</condition>
-	</animation>
-	
-  <animation>
-		<type>pick</type>
-		<object-name>refuelAPULeft</object-name>
-		<action>
-		  <button>0</button>
-		  <repeatable>true</repeatable>
-		  <interval-sec>0.2</interval-sec>
-		  <binding>
-		   <command>nasal</command>
-		   <script>b707.toggleProbeLeft();</script>
-		  </binding>
-		</action>
-  </animation>
-  
-  <animation>
-		<type>pick</type>
-		<object-name>refuelAPURight</object-name>
-		<action>
-		  <button>0</button>
-		  <repeatable>true</repeatable>
-		  <interval-sec>0.2</interval-sec>
-		  <binding>
-		   <command>nasal</command>
-		   <script>b707.toggleProbeRight();</script>
-		  </binding>
-		</action>
-  </animation>	
-
-	<animation>
-		<type>rotate</type>
-		<object-name>refuelBoom</object-name>
-		<object-name>refuelTube</object-name>
-		<property>/b707/refuelling/boom-azimuth</property>
-		<factor>1.5</factor>
-		<axis>
-			<x> 0</x>
-			<y> 0</y>
-			<z> 1</z>
-		</axis>
-		<center>
-			<x-m>16.04</x-m>
-			<y-m>0</y-m>
-			<z-m>0</z-m>
-		</center>
-	</animation>
-	
-	<animation>
-		<name>Boom rotate</name>
-		<type>rotate</type>
-		<object-name>refuelBoom</object-name>
-		<object-name>refuelTube</object-name>
-		<property>sim/multiplay/generic/float[18]</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.7</ind><dep>40</dep></entry>
-			<entry><ind>1</ind><dep>40</dep></entry>
-		</interpolation>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-		<center>
-			<x-m>16.15</x-m>
-			<y-m>0</y-m>
-			<z-m>-0.6614</z-m>
-		</center>
-	</animation>
-	
-	<animation>
-		<name>Boom extend</name>
-		<type>translate</type>
-		<object-name>refuelTube</object-name>
-		<property>sim/multiplay/generic/float[18]</property>
-		<interpolation>
-			<entry><ind>0</ind><dep>0</dep></entry>
-			<entry><ind>0.7</ind><dep>0</dep></entry>
-			<entry><ind>1</ind><dep>4.0</dep></entry>
-		</interpolation>
-		<axis>
-			<x1-m>16.15</x1-m>
-			<y1-m>0</y1-m>
-			<z1-m>-0.6614</z1-m>
-			<x2-m>24.293</x2-m>
-			<y2-m>0</y2-m>
-			<z2-m>0.9878</z2-m>
-		</axis>
-	</animation>
-	
-  <animation>
-		<type>pick</type>
-		<object-name>refuelPivot</object-name>
-		<action>
-		  <button>0</button>
-		  <repeatable>true</repeatable>
-		  <interval-sec>0.2</interval-sec>
-		  <binding>
-		   <command>nasal</command>
-		   <script>b707.doorsystem.refuelexport();</script>
-		  </binding>
-		</action>
-  </animation>	
+	</animation>	
   
 	<!-- animate the doors and the nose -->
 	<animation>
@@ -938,41 +756,6 @@
 		  </binding>
 		</action>
   </animation>	
-  
-	<animation>
-      <type>rotate</type>
-      <object-name>doorCargo</object-name>
-      <property>sim/multiplay/generic/float[15]</property>
-			<interpolation>
-				<entry><ind>    0.0</ind><dep>   0.0</dep></entry>
-				<entry><ind>    0.5</ind><dep> 100.0</dep></entry>
-				<entry><ind>    1.0</ind><dep> 100.0</dep></entry>
-			</interpolation>
-      <center>
-          <x-m> 0.0</x-m>
-          <y-m>-1.07</y-m>
-          <z-m> 2.13</z-m>
-      </center>
-      <axis>
-          <x>-1</x>
-          <y> 0</y>
-          <z> 0</z>
-      </axis>
-  </animation>
-
-  <animation>
-		<type>pick</type>		
-		<object-name>doorCargo</object-name>
-		<action>
-		  <button>0</button>
-		  <repeatable>true</repeatable>
-		  <interval-sec>0.2</interval-sec>
-		  <binding>
-		   <command>nasal</command>
-		   <script>b707.doorsystem.cargoexport();</script>
-		  </binding>
-		</action>
-  </animation>
   
 	<animation>
       <type>rotate</type>
@@ -2372,13 +2155,12 @@
 	    </params>
 	  </overlay>
 	</model>
-	
+
     <animation>
      <type>translate</type>
      <object-name>cockpit</object-name>
 	 <object-name>registrationCockpitPanel</object-name>
-	 <object-name>operatorRoom</object-name>
-	 <object-name>operationPanel</object-name>
+	 <object-name>radioRoom</object-name>
      <property>/b707/shake-effect/shaking</property>
      <axis>
    		<x1-m>  0</x1-m>
@@ -2403,20 +2185,20 @@
 	
 	<model>
 		<name>engineTwo</name>
-		<path>Aircraft/KC-137R/Models/Engines/LeapX.xml</path>
+		<path>Aircraft/KC-137R/Models/Engines/LeapX_2.xml</path>
 		<offsets>
             <!--x-m> -1.25</x-m>
 		  <y-m>-10.077</y-m>
 		  <z-m> -1.10</z-m-->    
-		  <x-m>  0.22</x-m>
-		  <y-m>-14.835</y-m>
-		  <z-m> -0.99</z-m>
+		  <x-m> -3.50</x-m>
+		  <y-m>-10.077</y-m>
+		  <z-m> -1.47</z-m>
 		</offsets>
 	</model>
 	
 	<model>
 		<name>engineThree</name>
-		<path>Aircraft/KC-137R/Models/Engines/LeapX.xml</path>
+		<path>Aircraft/KC-137R/Models/Engines/LeapX_3.xml</path>
 		<offsets>
 		  <x-m> -3.50</x-m>
 		  <y-m> 10.077</y-m>
@@ -2426,7 +2208,7 @@
 	
 	<model>
 		<name>engineFour</name>
-		<path>Aircraft/KC-137R/Models/Engines/LeapX.xml</path>
+		<path>Aircraft/KC-137R/Models/Engines/LeapX_4.xml</path>
 		<offsets>
 		  <x-m>  0.22</x-m>
 		  <y-m> 14.835</y-m>
@@ -2517,7 +2299,7 @@
 	
 	<model>
 		<name>ExternalLights</name>
-		<path>Aircraft/KC-137R/Models/Lights/707_Lights.xml</path>	
+		<path>Aircraft/KC-137R/Models/Lights/Awacs_Lights.xml</path>	
 		<offsets>
 			<x-m>0</x-m>
 			<y-m>0</y-m>
