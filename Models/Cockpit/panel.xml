@@ -23,8 +23,8 @@
   <condition>		
 	<equals>
 		<property>sim/aircraft</property>
-		<value type="string">EC-137D</value>
-	</equals>
+		<value type="string">KC-137R</value>
+      </equals>
   </condition>
   <offsets>
     <x-m>-18.916</x-m>
